@@ -38,6 +38,7 @@ def aggregate(stats, neighborhood, separable=False):
             stats,
             neighborhood,
             padding='SAME',
+            
             data_format='NDHWC')
     else:
 
