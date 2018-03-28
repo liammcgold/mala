@@ -38,24 +38,24 @@ def aggregate(stats, neighborhood, separable=False):
             stats,
             neighborhood,
             padding='SAME',
-            data_format='NCDHW')
+            data_format='NDHWC')
     else:
 
         x = tf.nn.convolution(
             stats,
             neighborhood,
             padding='SAME',
-            data_format='NCDHW')
+            data_format='NDHWC')
         xy = tf.nn.convolution(
             x,
             tf.transpose(neighborhood, perm=[0, 2, 1, 3, 4]),
             padding='SAME',
-            data_format='NCDHW')
+            data_format='NDHWC')
         agg = tf.nn.convolution(
             xy,
             tf.transpose(neighborhood, perm=[2, 0, 1, 3, 4]),
             padding='SAME',
-            data_format='NCDHW')
+            data_format='NDHWC')
 
     return agg
 
