@@ -50,7 +50,7 @@ def conv_pass(
             filters=num_fmaps,
             kernel_size=kernel_size,
             padding='valid',
-            data_format='channels_first',
+            data_format="channels_last",
             activation=activation,
             name=name + '_%i'%i)
 
