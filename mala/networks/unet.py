@@ -63,7 +63,7 @@ def downsample(fmaps_in, factors, name='down'):
         pool_size=factors,
         strides=factors,
         padding='valid',
-        data_format='channels_first',
+        data_format="channels_last",
         name=name)
 
     return fmaps
@@ -81,7 +81,7 @@ def upsample(fmaps_in, factors, num_fmaps, activation='relu', name='up'):
         padding='valid',
         activation=activation,
         name=name,
-        data_format="NDHWC")
+        data_format="channels_last")
 
     return fmaps
 
