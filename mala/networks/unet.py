@@ -79,9 +79,9 @@ def upsample(fmaps_in, factors, num_fmaps, activation='relu', name='up'):
         kernel_size=factors,
         strides=factors,
         padding='valid',
-        data_format='channels_first',
         activation=activation,
-        name=name)
+        name=name,
+        data_format="NDHWC")
 
     return fmaps
 
@@ -255,6 +255,19 @@ if __name__ == "__main__":
 
     model = unet(raw, 12, 5, [[1,3,3],[1,3,3],[1,3,3]])
     tf.train.export_meta_graph(filename='unet.meta')
+
+    names = {
+        'raw': raw.name,
+        'labels': labels.name,
+        'gt_labels': gt_labels.name,
+        'loss_weights': loss_weights.name,
+        'loss': loss.name,
+        'optimizer': optimizer.name,
+        'summary': merged.name}
+
+
+
+
 
     with tf.Session() as session:
         session.run(tf.initialize_all_variables())
